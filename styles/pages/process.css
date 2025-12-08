@@ -1,0 +1,585 @@
+/* styles/pages/process.css */
+/* Process Hero */
+.process-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-top: 6rem;
+}
+
+.process-hero .hero-content {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+/* Desktop Wrapper */
+.desktop-wrapper {
+    padding-bottom: 8rem;
+}
+
+/* Nested Desktop Container (like React) */
+.desktop-outer {
+    border-radius: 1.5rem;
+    padding: 0.25rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)) border-box;
+}
+
+.desktop-mid {
+    border-radius: calc(1.5rem - 0.25rem);
+    padding: 0.25rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)) border-box;
+}
+
+.desktop-inner {
+    background: var(--color-card);
+    border-radius: calc(1.5rem - 0.5rem);
+    padding: 1.5rem;
+}
+
+/* Desktop Screen */
+.desktop-screen {
+    background: linear-gradient(to bottom right, #111, #000);
+    border-radius: 1rem;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Desktop Background Grid */
+.desktop-bg-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    background-image: 
+        linear-gradient(rgba(var(--color-primary-rgb), 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--color-primary-rgb), 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Desktop Layout */
+.desktop-layout {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.desktop-left {
+    flex: 1;
+}
+
+.desktop-right {
+    width: 12rem;
+    padding-top: 2rem;
+}
+
+/* Demo Card Container */
+.demo-card-container {
+    height: 100%;
+}
+
+.demo-card {
+    border-radius: 1rem;
+    padding: 0.125rem;
+    height: 100%;
+}
+
+.demo-card-inner {
+    border-radius: calc(1rem - 0.125rem);
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Window Controls */
+.window-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.window-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.window-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.window-dot.red { background: var(--color-danger); }
+.window-dot.yellow { background: var(--color-warning); }
+.window-dot.green { background: var(--color-accent); }
+
+.window-title {
+    font-family: 'Courier New', monospace;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.window-spacer {
+    width: 3rem;
+}
+
+/* Demo Content */
+.demo-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.demo-view {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+}
+
+.demo-view.active {
+    display: flex;
+}
+
+/* Form Section */
+.form-section {
+    margin-bottom: 1.5rem;
+}
+
+.section-label {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.search-query {
+    color: var(--color-foreground);
+    font-weight: 500;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-field {
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.field-label {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+}
+
+.field-value {
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+    min-height: 1.25rem;
+    font-weight: 500;
+}
+
+.field-value.typing::after {
+    content: '|';
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to { visibility: hidden; }
+}
+
+.summary-box {
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    min-height: 100px;
+    font-size: 0.875rem;
+}
+
+.summary-box.typing::after {
+    content: '|';
+    animation: blink 1s steps(2, start) infinite;
+}
+
+/* Status */
+.form-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-dot.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.status-text {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+}
+
+/* Auto-demo Indicator */
+.auto-demo-indicator {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-indicator {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.progress-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-blue-purple);
+    border-radius: 2px;
+    animation: progressLoop 15s linear infinite;
+}
+
+@keyframes progressLoop {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+}
+
+.loop-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-primary);
+}
+
+/* Results */
+.results-section {
+    margin-bottom: 1.5rem;
+}
+
+.results-header {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.results-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.results-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.results-count {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.jobs-container {
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    flex: 1;
+    min-height: 200px;
+    overflow-y: auto;
+}
+
+.jobs-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.job-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    animation: slideIn 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.job-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.job-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--color-primary-rgb), 0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.job-icon i {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+}
+
+.job-details {
+    flex: 1;
+}
+
+.job-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+}
+
+.job-name {
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.job-salary {
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.job-meta {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+}
+
+/* Auto-reset Indicator */
+.auto-reset-indicator {
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+.reset-timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+}
+
+.reset-timer i {
+    color: var(--color-primary);
+}
+
+/* Folders */
+.folders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform var(--transition-normal);
+}
+
+.folder:hover {
+    transform: translateY(-5px);
+}
+
+.folder-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+.bg-gradient-purple {
+    background: linear-gradient(135deg, var(--color-secondary), #ec4899);
+}
+
+.bg-gradient-green {
+    background: linear-gradient(135deg, var(--color-accent), #34d399);
+}
+
+.folder-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.folder-name {
+    font-size: 0.875rem;
+    color: var(--color-foreground-muted);
+    font-weight: 500;
+}
+
+/* Taskbar */
+.desktop-taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.taskbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+}
+
+.taskbar-app {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.taskbar-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-icon i {
+    font-size: 1rem;
+    color: white;
+}
+
+.taskbar-name {
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+}
+
+.taskbar-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Desktop Stand */
+.desktop-stand {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.stand-base {
+    width: 8rem;
+    height: 0.5rem;
+    background: linear-gradient(to right, #222, #333, #222);
+    border-radius: 0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .desktop-right {
+        display: none;
+    }
+    
+    .desktop-layout {
+        gap: 0;
+    }
+    
+    .jobs-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-inner {
+        padding: 1rem;
+    }
+    
+    .desktop-screen {
+        min-height: 500px;
+    }
+    
+    .desktop-layout {
+        padding: 1rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .demo-card-inner {
+        padding: 1rem;
+    }
+}

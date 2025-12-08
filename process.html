@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCareerKit - Sök Jobb Demo</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/pages/process.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar will be inserted by navbar.js -->
+    
+    <!-- Hero Section -->
+    <section class="hero process-hero">
+        <div class="container">
+            <div class="hero-content text-center">
+                <div class="badge">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Live Demo</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Se <span class="text-gradient animate-shimmer">processen i realtid</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Vår AI fyller i formulär, söker jobb och presenterar resultat automatiskt — i en oändlig loop.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desktop Container -->
+    <div class="desktop-wrapper">
+        <div class="container">
+            <!-- Nested gradient borders like React version -->
+            <div class="desktop-outer gradient-border">
+                <div class="desktop-mid gradient-border">
+                    <div class="desktop-inner">
+                        <div class="desktop-screen">
+                            <!-- Desktop Background Grid -->
+                            <div class="desktop-bg-grid"></div>
+                            
+                            <!-- Desktop Content -->
+                            <div class="desktop-layout">
+                                <!-- Left Side: Demo Card -->
+                                <div class="desktop-left">
+                                    <div class="demo-card-container">
+                                        <div class="demo-card gradient-border">
+                                            <div class="demo-card-inner glass">
+                                                <!-- Window Controls -->
+                                                <div class="window-controls">
+                                                    <div class="window-dots">
+                                                        <span class="window-dot red"></span>
+                                                        <span class="window-dot yellow"></span>
+                                                        <span class="window-dot green"></span>
+                                                    </div>
+                                                    <div id="demoTitle" class="window-title">MyCareerKit — Demo</div>
+                                                    <div class="window-spacer"></div>
+                                                </div>
+
+                                                <!-- Demo Content -->
+                                                <div class="demo-content">
+                                                    <!-- Form View -->
+                                                    <div id="formView" class="demo-view active">
+                                                        <div class="form-section">
+                                                            <div class="section-label">Personuppgifter</div>
+                                                            <div class="form-grid">
+                                                                <div class="form-field">
+                                                                    <div class="field-label">Namn</div>
+                                                                    <div id="nameField" class="field-value"></div>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <div class="field-label">Jobb Titel</div>
+                                                                    <div id="titleField" class="field-value"></div>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <div class="field-label">E-post</div>
+                                                                    <div id="emailField" class="field-value"></div>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <div class="field-label">Telefon</div>
+                                                                    <div id="phoneField" class="field-value"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-section">
+                                                            <div class="section-label">Om mig / Sammanfattning</div>
+                                                            <div id="summaryBox" class="summary-box"></div>
+                                                        </div>
+
+                                                        <div class="form-status">
+                                                            <div class="status-item">
+                                                                <div class="status-dot pulse"></div>
+                                                                <span class="status-text">Färdigheter (demo)</span>
+                                                            </div>
+                                                            <div id="formStatus" class="status-text">Redo</div>
+                                                        </div>
+
+                                                        <!-- Auto-demo indicator -->
+                                                        <div class="auto-demo-indicator">
+                                                            <div class="progress-indicator">
+                                                                <div class="progress-bar">
+                                                                    <div class="progress-fill"></div>
+                                                                </div>
+                                                                <div class="progress-text">
+                                                                    <span id="progressText">Demo körs automatiskt</span>
+                                                                    <span class="loop-badge">
+                                                                        <i class="fas fa-infinity"></i> Oändlig loop
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Results View -->
+                                                    <div id="resultsView" class="demo-view">
+                                                        <div class="results-section">
+                                                            <div class="section-label">
+                                                                Sökresultat: <span class="search-query">Frontend Utvecklare</span>
+                                                            </div>
+                                                            <div class="results-header glass">
+                                                                <div class="results-info">
+                                                                    <div class="results-title">Jobb från hela Sverige</div>
+                                                                    <div id="jobCount" class="results-count">0 jobb</div>
+                                                                </div>
+                                                                <div id="searchStatus" class="status-text">Redo att söka</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="results-section">
+                                                            <div class="section-label">Matchande Jobb</div>
+                                                            <div class="jobs-container">
+                                                                <div id="jobsList" class="jobs-list">
+                                                                    <!-- Jobs will appear here -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Results auto-reset indicator -->
+                                                        <div class="auto-reset-indicator">
+                                                            <div class="reset-timer">
+                                                                <i class="fas fa-redo"></i>
+                                                                <span>Återställer om <span id="resetTimer">5</span>s</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Side: Folders -->
+                                <div class="desktop-right">
+                                    <div class="folders-container">
+                                        <div class="folder">
+                                            <div class="folder-icon bg-gradient-blue">
+                                                <i class="fas fa-briefcase"></i>
+                                            </div>
+                                            <span class="folder-name">MyCareerKit</span>
+                                        </div>
+                                        <div class="folder">
+                                            <div class="folder-icon bg-gradient-purple">
+                                                <i class="fas fa-file-alt"></i>
+                                            </div>
+                                            <span class="folder-name">CV Mapp</span>
+                                        </div>
+                                        <div class="folder">
+                                            <div class="folder-icon bg-gradient-green">
+                                                <i class="fas fa-search"></i>
+                                            </div>
+                                            <span class="folder-name">Jobb</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Taskbar -->
+                            <div class="desktop-taskbar">
+                                <div class="taskbar-content">
+                                    <div class="taskbar-app">
+                                        <div class="taskbar-icon">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                        <span class="taskbar-name">MyCareerKit - Demo</span>
+                                    </div>
+                                    <div class="taskbar-status">
+                                        <div id="taskbarDot" class="status-dot"></div>
+                                        <span id="taskbarStatus" class="status-text">Redo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Stand (like React version) -->
+            <div class="desktop-stand">
+                <div class="stand-base"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="js/process.js"></script>
+</body>
+</html>

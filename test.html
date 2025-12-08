@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Demo - Pure HTML/CSS/JS</title>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Demo Container */
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 4rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge::before {
+            content: "✨";
+            font-size: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradient 3s ease-in-out infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Desktop UI */
+        .desktop {
+            background: linear-gradient(145deg, #111, #222);
+            border: 1px solid #333;
+            border-radius: 1.5rem;
+            padding: 0.5rem;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .desktop-inner {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        /* Desktop Content */
+        .desktop-content {
+            display: flex;
+            min-height: 600px;
+            padding: 1.5rem;
+            gap: 2rem;
+            position: relative;
+            background: linear-gradient(to bottom right, #111, #000);
+        }
+
+        .desktop-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Left Panel */
+        .left-panel {
+            flex: 1;
+            position: relative;
+        }
+
+        .demo-card {
+            border: 1px solid transparent;
+            border-radius: 1rem;
+            padding: 3px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6) border-box;
+            height: 100%;
+        }
+
+        .card-inner {
+            background: rgba(17, 17, 17, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 0.875rem;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        /* Window Controls */
+        .window-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ef4444; }
+        .dot.yellow { background: #f59e0b; }
+        .dot.green { background: #10b981; }
+
+        .window-title {
+            font-family: 'Courier New', monospace;
+            color: #a1a1aa;
+            font-size: 0.875rem;
+        }
+
+        /* Form */
+        .form-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            color: #a1a1aa;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-field {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .field-label {
+            font-size: 0.75rem;
+            color: #a1a1aa;
+            margin-bottom: 0.25rem;
+        }
+
+        .field-value {
+            font-size: 0.875rem;
+            color: #fff;
+            min-height: 1.25rem;
+        }
+
+        .typing::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .summary-box {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            min-height: 100px;
+            font-size: 0.875rem;
+        }
+
+        /* Status */
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Button */
+        .demo-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Right Panel - Folders */
+        .right-panel {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding-top: 3rem;
+        }
+
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .folder:hover {
+            transform: translateY(-5px);
+        }
+
+        .folder-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .folder:nth-child(1) .folder-icon {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+        .folder:nth-child(2) .folder-icon {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+        .folder:nth-child(3) .folder-icon {
+            background: linear-gradient(135deg, #10b981, #34d399);
+        }
+
+        .folder-name {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            font-weight: 500;
+        }
+
+        /* Taskbar */
+        .taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+        }
+
+        .app-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .app-icon-bg {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-name {
+            font-size: 0.875rem;
+            color: #fff;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+        }
+
+        .status-text {
+            font-size: 0.75rem;
+            color: #a1a1aa;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            display: none;
+        }
+
+        .results-header {
+            margin-bottom: 1rem;
+        }
+
+        .results-count {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .count {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .count-number {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .job-card {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .job-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .job-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .job-icon::before {
+            content: "💼";
+            font-size: 1.25rem;
+        }
+
+        .job-details {
+            flex: 1;
+        }
+
+        .job-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-name {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .job-salary {
+            color: #3b82f6;
+            font-size: 0.75rem;
+        }
+
+        .job-meta {
+            font-size: 0.75rem;
+            color: #a1a1aa;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.95);
+            transform: rotate(12deg) skew(-12deg);
+            border-radius: 3px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .click-effect {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* Scrollbar */
+        .jobs-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .jobs-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .jobs-grid::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .desktop-content {
+                flex-direction: column;
+            }
+            
+            .right-panel {
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                padding-top: 1rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <div class="badge">Live Demo</div>
+            <h1>See the Process in Real Time</h1>
+            <p class="subtitle">
+                Click "Start Demo" to see how our AI automatically fills, searches, and matches jobs for you.
+            </p>
+        </div>
+
+        <div class="desktop">
+            <div class="desktop-inner">
+                <div class="desktop-content">
+                    <div class="desktop-bg"></div>
+                    
+                    <!-- Left Panel -->
+                    <div class="left-panel">
+                        <div class="demo-card">
+                            <div class="card-inner">
+                                <!-- Form View -->
+                                <div id="formView" class="form-view">
+                                    <div class="window-controls">
+                                        <div class="dots">
+                                            <div class="dot red"></div>
+                                            <div class="dot yellow"></div>
+                                            <div class="dot green"></div>
+                                        </div>
+                                        <div class="window-title">MyCareerKit — Demo</div>
+                                        <div style="width: 48px"></div>
+                                    </div>
+
+                                    <div class="form-section">
+                                        <span class="section-label">Personal Information</span>
+                                        <div class="form-grid">
+                                            <div class="form-field">
+                                                <div class="field-label">Name</div>
+                                                <div id="nameField" class="field-value"></div>
+                                            </div>
+                                            <div class="form-field">
+                                                <div class="field-label">Job Title</div>
+                                                <div id="titleField" class="field-value"></div>
+                                            </div>
+                                            <div class="form-field">
+                                                <div class="field-label">Email</div>
+                                                <div id="emailField" class="field-value"></div>
+                                            </div>
+                                            <div class="form-field">
+                                                <div class="field-label">Phone</div>
+                                                <div id="phoneField" class="field-value"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-section">
+                                        <span class="section-label">About Me / Summary</span>
+                                        <div id="summaryBox" class="summary-box">
+                                            <!-- Will be filled by JS -->
+                                        </div>
+                                    </div>
+
+                                    <div class="status">
+                                        <div class="status-indicator">
+                                            <div class="pulse"></div>
+                                            <span class="status-text">Skills (demo)</span>
+                                        </div>
+                                        <div id="statusText" class="status-text">Ready</div>
+                                    </div>
+
+                                    <button id="demoButton" class="demo-button">
+                                        <span id="buttonIcon">🔍</span>
+                                        <span id="buttonText">Start Demo</span>
+                                    </button>
+                                </div>
+
+                                <!-- Results View -->
+                                <div id="resultsView" class="results-panel">
+                                    <div class="window-controls">
+                                        <div class="dots">
+                                            <div class="dot red"></div>
+                                            <div class="dot yellow"></div>
+                                            <div class="dot green"></div>
+                                        </div>
+                                        <div class="window-title">MyCareerKit — Results</div>
+                                        <div style="width: 48px"></div>
+                                    </div>
+
+                                    <div class="results-header">
+                                        <span class="section-label">Search Results: 
+                                            <span style="color: #fff; font-weight: 500;">Frontend Developer</span>
+                                        </span>
+                                        <div class="results-count">
+                                            <div class="count">
+                                                <span class="status-text">Jobs from all over Sweden</span>
+                                                <span id="jobCount" class="count-number">0 jobs</span>
+                                            </div>
+                                            <div id="searchStatus" class="status-text">Ready to search</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-section">
+                                        <span class="section-label">Matching Jobs</span>
+                                        <div id="jobsContainer" class="jobs-grid">
+                                            <!-- Jobs will be inserted here -->
+                                        </div>
+                                    </div>
+
+                                    <button id="restartButton" class="demo-button">
+                                        <span>✅</span>
+                                        <span>Demo Complete — Run Again</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="right-panel">
+                        <div class="folder">
+                            <div class="folder-icon">📁</div>
+                            <span class="folder-name">MyCareerKit</span>
+                        </div>
+                        <div class="folder">
+                            <div class="folder-icon">📄</div>
+                            <span class="folder-name">CV Folder</span>
+                        </div>
+                        <div class="folder">
+                            <div class="folder-icon">💼</div>
+                            <span class="folder-name">Jobs</span>
+                        </div>
+                    </div>
+
+                    <!-- Taskbar -->
+                    <div class="taskbar">
+                        <div class="app-icon">
+                            <div class="app-icon-bg">💼</div>
+                            <span class="app-name">MyCareerKit - Demo</span>
+                        </div>
+                        <div class="status-indicator">
+                            <div id="taskbarDot" class="status-dot"></div>
+                            <span id="taskbarText" class="status-text">Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div id="cursor" class="cursor"></div>
+
+    <script>
+        // Demo state
+        const demoState = {
+            step: 'idle', // 'idle', 'filling', 'searching', 'complete'
+            typed: {
+                name: '',
+                title: '',
+                email: '',
+                phone: ''
+            }
+        };
+
+        // DOM Elements
+        const formView = document.getElementById('formView');
+        const resultsView = document.getElementById('resultsView');
+        const demoButton = document.getElementById('demoButton');
+        const restartButton = document.getElementById('restartButton');
+        const cursor = document.getElementById('cursor');
+        const fields = {
+            name: document.getElementById('nameField'),
+            title: document.getElementById('titleField'),
+            email: document.getElementById('emailField'),
+            phone: document.getElementById('phoneField')
+        };
+        const summaryBox = document.getElementById('summaryBox');
+        const statusText = document.getElementById('statusText');
+        const buttonText = document.getElementById('buttonText');
+        const buttonIcon = document.getElementById('buttonIcon');
+        const jobCount = document.getElementById('jobCount');
+        const searchStatus = document.getElementById('searchStatus');
+        const jobsContainer = document.getElementById('jobsContainer');
+        const taskbarDot = document.getElementById('taskbarDot');
+        const taskbarText = document.getElementById('taskbarText');
+
+        // Sample jobs data
+        const sampleJobs = [
+            { id: 1, title: 'Frontend Developer', location: 'Stockholm', salary: '45,000 SEK/month', company: 'TechCorp AB' },
+            { id: 2, title: 'Fullstack Developer', location: 'Gothenburg', salary: '52,000 SEK/month', company: 'InnovateIT' },
+            { id: 3, title: 'DevOps Engineer', location: 'Remote', salary: '48,000 SEK/month', company: 'CloudSystems' },
+            { id: 4, title: 'UX Designer', location: 'Malmö', salary: '42,000 SEK/month', company: 'DesignStudio' },
+            { id: 5, title: 'Backend Developer', location: 'Uppsala', salary: '47,000 SEK/month', company: 'DataLabs' },
+            { id: 6, title: 'Python Developer', location: 'Stockholm', salary: '46,000 SEK/month', company: 'AI Solutions' },
+            { id: 7, title: 'React Specialist', location: 'Remote', salary: '51,000 SEK/month', company: 'WebFactory' },
+            { id: 8, title: 'Project Manager', location: 'Gothenburg', salary: '55,000 SEK/month', company: 'ManagePro' }
+        ];
+
+        // Typewriter effect
+        function typeText(element, text, speed = 30) {
+            return new Promise(resolve => {
+                let i = 0;
+                element.innerHTML = '';
+                element.classList.add('typing');
+                
+                const interval = setInterval(() => {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                        element.classList.remove('typing');
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        // Move cursor animation
+        function moveCursor(x, y, duration = 600) {
+            return new Promise(resolve => {
+                cursor.style.transition = `all ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+                
+                setTimeout(() => {
+                    resolve();
+                }, duration);
+            });
+        }
+
+        // Show click effect
+        function showClick() {
+            const click = document.createElement('div');
+            click.className = 'click-effect';
+            click.style.left = cursor.style.left;
+            click.style.top = cursor.style.top;
+            document.body.appendChild(click);
+            
+            click.animate([
+                { transform: 'scale(0.6)', opacity: 0.9 },
+                { transform: 'scale(2.3)', opacity: 0 }
+            ], {
+                duration: 450,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+            
+            setTimeout(() => click.remove(), 450);
+        }
+
+        // Update UI state
+        function updateUI() {
+            switch(demoState.step) {
+                case 'idle':
+                    formView.style.display = 'block';
+                    resultsView.style.display = 'none';
+                    buttonText.textContent = 'Start Demo';
+                    buttonIcon.textContent = '🔍';
+                    statusText.textContent = 'Ready';
+                    taskbarText.textContent = 'Ready';
+                    taskbarDot.style.background = '#10b981';
+                    break;
+                    
+                case 'filling':
+                    buttonText.textContent = 'Filling Form...';
+                    buttonIcon.textContent = '✏️';
+                    statusText.textContent = 'Filling form...';
+                    taskbarText.textContent = 'Filling form...';
+                    taskbarDot.style.background = '#f59e0b';
+                    break;
+                    
+                case 'searching':
+                    formView.style.display = 'none';
+                    resultsView.style.display = 'block';
+                    searchStatus.textContent = 'Searching in real time...';
+                    taskbarText.textContent = 'Searching jobs...';
+                    taskbarDot.style.background = '#3b82f6';
+                    break;
+                    
+                case 'complete':
+                    buttonText.textContent = 'Demo Complete — Run Again';
+                    buttonIcon.textContent = '✅';
+                    searchStatus.textContent = 'Search completed!';
+                    taskbarText.textContent = 'Complete';
+                    taskbarDot.style.background = '#10b981';
+                    break;
+            }
+        }
+
+        // Reset demo
+        function resetDemo() {
+            demoState.step = 'idle';
+            demoState.typed = { name: '', title: '', email: '', phone: '' };
+            
+            for (let field in fields) {
+                fields[field].textContent = '';
+                fields[field].classList.remove('typing');
+            }
+            
+            summaryBox.textContent = '';
+            summaryBox.classList.remove('typing');
+            
+            jobsContainer.innerHTML = '';
+            jobCount.textContent = '0 jobs';
+            
+            cursor.style.left = '200px';
+            cursor.style.top = '300px';
+            cursor.style.transition = 'none';
+            
+            updateUI();
+        }
+
+        // Animate form filling
+        async function animateFormFilling() {
+            demoState.step = 'filling';
+            updateUI();
+            
+            // Simulate cursor movement to form
+            await moveCursor(300, 400, 400);
+            
+            // Type each field
+            await typeText(fields.name, 'Anna Svensson');
+            demoState.typed.name = 'Anna Svensson';
+            
+            await moveCursor(500, 400, 200);
+            await typeText(fields.title, 'Frontend Developer');
+            demoState.typed.title = 'Frontend Developer';
+            
+            await moveCursor(300, 500, 200);
+            await typeText(fields.email, 'anna.svensson@example.com');
+            demoState.typed.email = 'anna.svensson@example.com';
+            
+            await moveCursor(500, 500, 200);
+            await typeText(fields.phone, '073-123 45 67');
+            demoState.typed.phone = '073-123 45 67';
+            
+            // Move to summary
+            await moveCursor(400, 600, 300);
+            await typeText(summaryBox, 'Experienced Frontend Developer with 5+ years in React, TypeScript, and modern web technologies. Passionate about creating responsive and accessible user interfaces.', 20);
+            
+            // Move to button
+            const buttonRect = demoButton.getBoundingClientRect();
+            await moveCursor(
+                buttonRect.left + buttonRect.width / 2,
+                buttonRect.top + buttonRect.height / 2,
+                400
+            );
+            
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            // Click animation
+            showClick();
+            await new Promise(resolve => setTimeout(resolve, 300));
+            
+            // Switch to searching
+            demoState.step = 'searching';
+            updateUI();
+            
+            // Simulate searching delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Show results
+            demoState.step = 'complete';
+            updateUI();
+            
+            let jobsShown = 0;
+            for (let i = 0; i < sampleJobs.length; i++) {
+                setTimeout(() => {
+                    const job = sampleJobs[i];
+                    const jobCard = document.createElement('div');
+                    jobCard.className = 'job-card';
+                    jobCard.style.animationDelay = `${i * 0.1}s`;
+                    
+                    jobCard.innerHTML = `
+                        <div class="job-header">
+                            <div class="job-icon"></div>
+                            <div class="job-details">
+                                <div class="job-title">
+                                    <div class="job-name">${job.title}</div>
+                                    <div class="job-salary">${job.salary}</div>
+                                </div>
+                                <div class="job-meta">${job.company} • ${job.location}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    jobsContainer.appendChild(jobCard);
+                    jobsShown++;
+                    jobCount.textContent = `${jobsShown} jobs`;
+                }, i * 140);
+            }
+        }
+
+        // Event Listeners
+        demoButton.addEventListener('click', () => {
+            if (demoState.step === 'idle') {
+                animateFormFilling();
+            }
+        });
+
+        restartButton.addEventListener('click', resetDemo);
+
+        // Initialize
+        updateUI();
+
+        // Make cursor follow mouse
+        document.addEventListener('mousemove', (e) => {
+            if (demoState.step === 'idle' || demoState.step === 'complete') {
+                cursor.style.transition = 'all 0.1s ease';
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            }
+        });
+    </script>
+</body>
+</html>

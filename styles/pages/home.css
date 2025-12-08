@@ -1,0 +1,356 @@
+/* styles/pages/home.css */
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 4rem;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 36rem;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title-line {
+    display: block;
+}
+
+.hero-title-line:first-child {
+    color: var(--color-foreground);
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+/* Hero Visual */
+.hero-visual {
+    position: relative;
+}
+
+.glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-primary-rgb), 0.2) 0%,
+        rgba(var(--color-primary-rgb), 0.1) 25%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* How It Works Section */
+.section {
+    padding: 6rem 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 4rem;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+}
+
+.how-it-works {
+    position: relative;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* Screenshots Section */
+.screenshots {
+    background: linear-gradient(
+        to bottom,
+        var(--color-background) 0%,
+        rgba(var(--color-primary-rgb), 0.05) 50%,
+        var(--color-background) 100%
+    );
+}
+
+.screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Coming Soon Section */
+.coming-soon {
+    position: relative;
+    padding: 8rem 0;
+    overflow: hidden;
+}
+
+.coming-soon-content {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.coming-soon-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-primary-rgb), 0.15) 0%,
+        rgba(var(--color-primary-rgb), 0.05) 40%,
+        transparent 80%
+    );
+    border-radius: 50%;
+}
+
+/* Animations */
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.animate-shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--color-primary) 0%,
+        var(--color-secondary) 25%,
+        var(--color-primary) 50%,
+        var(--color-secondary) 75%,
+        var(--color-primary) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Hover Effects */
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+.feature-icon {
+    transition: transform var(--transition-normal);
+}
+
+.app-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.step-card {
+    transition: all var(--transition-normal);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 36rem;
+        margin: 0 auto;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+        max-width: 20rem;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .screenshots-grid {
+        grid-template-columns: 1fr;
+        max-width: 24rem;
+        margin: 0 auto;
+    }
+    
+    .hero-description,
+    .section-description {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .hero {
+        padding-top: 6rem;
+    }
+}
+
+/* Loading Bar Animation */
+@keyframes pulse-width {
+    0%, 100% {
+        width: var(--start-width);
+    }
+    50% {
+        width: var(--end-width);
+    }
+}
+
+.loading-bar:nth-child(1) {
+    --start-width: 75%;
+    --end-width: 80%;
+    animation: pulse-width 2s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(2) {
+    --start-width: 50%;
+    --end-width: 55%;
+    animation: pulse-width 2.2s ease-in-out infinite 0.3s;
+}
+
+.loading-bar:nth-child(3) {
+    --start-width: 65%;
+    --end-width: 70%;
+    animation: pulse-width 2.4s ease-in-out infinite 0.6s;
+}
+
+/* App Card Animation */
+@keyframes card-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(var(--color-primary-rgb), 0);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.3);
+    }
+}
+
+.app-card:nth-child(1) {
+    animation: card-glow 4s ease-in-out infinite;
+}
+
+.app-card:nth-child(2) {
+    animation: card-glow 4s ease-in-out infinite 1s;
+}
+
+.app-card:nth-child(3) {
+    animation: card-glow 4s ease-in-out infinite 2s;
+}
+
+.app-card:nth-child(4) {
+    animation: card-glow 4s ease-in-out infinite 3s;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-blue-purple);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--color-primary-dark), var(--color-secondary-dark));
+}
