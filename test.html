@@ -1,245 +1,603 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Demo - Pure HTML/CSS/JS</title>
+    <title>MyCareerKit - AI CV Generator Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset & Base */
+        /* Import your existing CSS variables and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #0a0a0a;
+            color: #fafafa;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* Demo Container */
-        .demo-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        /* CSS Variables - Matching your existing theme */
+        :root {
+            /* Background & Foreground */
+            --color-background: #0a0a0a;
+            --color-background-light: #111111;
+            --color-foreground: #fafafa;
+            --color-foreground-muted: #d4d4d8;
+            
+            /* Primary Colors - Blue */
+            --color-primary: #3b82f6;
+            --color-primary-dark: #2563eb;
+            --color-primary-light: #60a5fa;
+            --color-primary-rgb: 59, 130, 246;
+            
+            /* Secondary Colors - Purple */
+            --color-secondary: #8b5cf6;
+            --color-secondary-dark: #7c3aed;
+            --color-secondary-light: #a78bfa;
+            --color-secondary-rgb: 139, 92, 246;
+            
+            /* Accent Colors */
+            --color-accent: #10b981; /* Emerald */
+            --color-warning: #f59e0b; /* Amber */
+            --color-danger: #ef4444; /* Red */
+            
+            /* Neutral Colors */
+            --color-muted: #a1a1aa;
+            --color-border: #27272a;
+            --color-card: #18181b;
+            --color-card-light: #27272a;
+            
+            /* Glass Effect */
+            --glass-background: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            --gradient-blue-purple: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            --gradient-dark: linear-gradient(to bottom right, #111, #000);
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;  /* 4px */
+            --spacing-sm: 0.5rem;   /* 8px */
+            --spacing-md: 1rem;     /* 16px */
+            --spacing-lg: 1.5rem;   /* 24px */
+            --spacing-xl: 2rem;     /* 32px */
+            --spacing-2xl: 3rem;    /* 48px */
+            --spacing-3xl: 4rem;    /* 64px */
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;  /* 6px */
+            --radius-md: 0.5rem;    /* 8px */
+            --radius-lg: 0.75rem;   /* 12px */
+            --radius-xl: 1rem;      /* 16px */
+            --radius-2xl: 1.5rem;   /* 24px */
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
         }
 
-        /* Header */
-        .header {
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== DEMO SPECIFIC STYLES ===== */
+        
+        /* Hero Section */
+        .demo-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+        }
+
+        .demo-hero .hero-content {
+            max-width: 48rem;
+            margin: 0 auto;
             text-align: center;
-            margin-bottom: 3rem;
-            padding-top: 4rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .text-gradient {
+            background: var(--gradient-blue-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .hero-description {
+            color: var(--color-muted);
+            font-size: 1.125rem;
+            max-width: 36rem;
+            margin: 0 auto 2rem;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            color: #3b82f6;
+            background: rgba(var(--color-primary-rgb), 0.1);
+            border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+            color: var(--color-primary);
             padding: 0.5rem 1rem;
             border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
             margin-bottom: 1.5rem;
         }
 
-        .badge::before {
-            content: "✨";
-            font-size: 1rem;
+        /* Desktop Container - Matching your existing demo */
+        .desktop-wrapper {
+            padding-bottom: 6rem;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: gradient 3s ease-in-out infinite;
+        .desktop-outer {
+            border-radius: var(--radius-2xl);
+            padding: 0.25rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)) border-box;
         }
 
-        @keyframes gradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: #a1a1aa;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Desktop UI */
-        .desktop {
-            background: linear-gradient(145deg, #111, #222);
-            border: 1px solid #333;
-            border-radius: 1.5rem;
-            padding: 0.5rem;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        .desktop-mid {
+            border-radius: calc(var(--radius-2xl) - 0.25rem);
+            padding: 0.25rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)) border-box;
         }
 
         .desktop-inner {
-            background: #0a0a0a;
-            border: 1px solid #333;
+            background: var(--color-card);
+            border-radius: calc(var(--radius-2xl) - 0.5rem);
+            padding: 1.5rem;
+        }
+
+        .desktop-screen {
+            background: linear-gradient(to bottom right, #111, #000);
             border-radius: 1rem;
+            min-height: 700px;
+            position: relative;
             overflow: hidden;
         }
 
-        /* Desktop Content */
-        .desktop-content {
-            display: flex;
-            min-height: 600px;
-            padding: 1.5rem;
-            gap: 2rem;
-            position: relative;
-            background: linear-gradient(to bottom right, #111, #000);
-        }
-
-        .desktop-bg {
+        .desktop-bg-grid {
             position: absolute;
             inset: 0;
-            opacity: 0.1;
+            opacity: 0.3;
             background-image: 
-                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+                linear-gradient(rgba(var(--color-primary-rgb), 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(var(--color-primary-rgb), 0.1) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
-        /* Left Panel */
-        .left-panel {
+        /* CV Generator Layout */
+        .cv-generator-layout {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            height: 100%;
+            gap: 20px;
+            padding: 1.5rem;
+        }
+
+        /* Left Panel - Controls */
+        .cv-left-panel {
+            width: 50%;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Right Panel - Preview */
+        .cv-right-panel {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        /* Card Styles */
+        .cv-card {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-icon {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-foreground);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--color-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-foreground);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-select:hover {
+            border-color: var(--color-primary);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-foreground);
+            font-size: 0.875rem;
+            min-height: 80px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .form-textarea::placeholder {
+            color: var(--color-muted);
+        }
+
+        /* Slider */
+        .slider-group {
+            margin: 1rem 0;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .slider {
+            flex: 1;
+            height: 6px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: 2px solid var(--color-background);
+        }
+
+        .slider-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.875rem;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--color-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            cursor: pointer;
             position: relative;
         }
 
-        .demo-card {
-            border: 1px solid transparent;
-            border-radius: 1rem;
-            padding: 3px;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6) border-box;
-            height: 100%;
+        .checkbox.checked {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
         }
 
-        .card-inner {
-            background: rgba(17, 17, 17, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 0.875rem;
-            padding: 1.5rem;
-            height: 100%;
+        .checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
 
-        /* Window Controls */
-        .window-controls {
+        /* Preview Pane */
+        .preview-container {
+            flex: 1;
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preview-header {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid var(--color-border);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-
-        .dots {
-            display: flex;
             gap: 0.5rem;
         }
 
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+        .preview-content {
+            padding: 2rem;
+            height: 500px;
+            overflow-y: auto;
+            position: relative;
         }
 
-        .dot.red { background: #ef4444; }
-        .dot.yellow { background: #f59e0b; }
-        .dot.green { background: #10b981; }
-
-        .window-title {
-            font-family: 'Courier New', monospace;
-            color: #a1a1aa;
-            font-size: 0.875rem;
+        /* CV Preview Styles */
+        .cv-preview {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
-        /* Form */
-        .form-section {
-            margin-bottom: 1.5rem;
+        .cv-header {
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .section-label {
-            font-size: 0.875rem;
-            color: #a1a1aa;
-            margin-bottom: 0.75rem;
-            display: block;
+        .cv-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+        .cv-title {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
         }
 
-        .form-field {
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
+        .cv-contact {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
         }
 
-        .field-label {
-            font-size: 0.75rem;
-            color: #a1a1aa;
+        .cv-section {
+            margin-bottom: 2rem;
+        }
+
+        .cv-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .cv-item {
+            margin-bottom: 1rem;
+        }
+
+        .cv-item-title {
+            font-weight: 600;
+            color: #333;
             margin-bottom: 0.25rem;
         }
 
-        .field-value {
-            font-size: 0.875rem;
-            color: #fff;
-            min-height: 1.25rem;
+        .cv-item-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        .typing::after {
-            content: "|";
-            animation: blink 1s infinite;
+        .cv-item-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .summary-box {
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            min-height: 100px;
-            font-size: 0.875rem;
-        }
-
-        /* Status */
-        .status {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 1.5rem 0;
-        }
-
+        /* Status Indicators */
         .status-indicator {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(var(--color-primary-rgb), 0.1);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(var(--color-primary-rgb), 0.2);
         }
 
-        .pulse {
-            width: 8px;
-            height: 8px;
+        .status-dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: #10b981;
-            animation: pulse 2s infinite;
+            background: var(--color-primary);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-text {
+            font-size: 0.875rem;
+            color: var(--color-foreground-muted);
+        }
+
+        /* Demo Progress */
+        .demo-progress {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient-blue-purple);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--color-muted);
+        }
+
+        .loop-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--color-primary);
+            font-weight: 500;
+        }
+
+        /* Taskbar */
+        .desktop-taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .taskbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .taskbar-app {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .taskbar-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .taskbar-icon i {
+            font-size: 1rem;
+            color: white;
+        }
+
+        .taskbar-name {
+            font-size: 0.875rem;
+            color: var(--color-foreground);
+        }
+
+        .taskbar-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Typing animation */
+        .typing::after {
+            content: '|';
+            animation: blink 1s steps(2, start) infinite;
+            color: var(--color-primary);
+        }
+
+        @keyframes blink {
+            to { visibility: hidden; }
         }
 
         @keyframes pulse {
@@ -247,183 +605,15 @@
             50% { opacity: 0.5; }
         }
 
-        /* Button */
-        .demo-button {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(90deg, #3b82f6, #6366f1);
-            color: white;
-            border: none;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .demo-button:hover {
-            background: linear-gradient(90deg, #2563eb, #4f46e5);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Right Panel - Folders */
-        .right-panel {
-            width: 200px;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            padding-top: 3rem;
-        }
-
-        .folder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .folder:hover {
-            transform: translateY(-5px);
-        }
-
-        .folder-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .folder:nth-child(1) .folder-icon {
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-        }
-        .folder:nth-child(2) .folder-icon {
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-        }
-        .folder:nth-child(3) .folder-icon {
-            background: linear-gradient(135deg, #10b981, #34d399);
-        }
-
-        .folder-name {
-            font-size: 0.875rem;
-            color: #d1d5db;
-            font-weight: 500;
-        }
-
-        /* Taskbar */
-        .taskbar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 48px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1.5rem;
-        }
-
-        .app-icon {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .app-icon-bg {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .app-name {
-            font-size: 0.875rem;
-            color: #fff;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #10b981;
-        }
-
-        .status-text {
-            font-size: 0.75rem;
-            color: #a1a1aa;
-        }
-
-        /* Results Panel */
-        .results-panel {
-            display: none;
-        }
-
-        .results-header {
-            margin-bottom: 1rem;
-        }
-
-        .results-count {
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .count {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .count-number {
-            color: #3b82f6;
-            font-weight: 600;
-        }
-
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 0.5rem;
-        }
-
-        .job-card {
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            animation: slideIn 0.3s ease-out forwards;
-            opacity: 0;
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
@@ -431,260 +621,238 @@
             }
         }
 
-        .job-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .job-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .job-icon::before {
-            content: "💼";
-            font-size: 1.25rem;
-        }
-
-        .job-details {
-            flex: 1;
-        }
-
-        .job-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.25rem;
-        }
-
-        .job-name {
-            font-weight: 700;
-            font-size: 0.875rem;
-        }
-
-        .job-salary {
-            color: #3b82f6;
-            font-size: 0.75rem;
-        }
-
-        .job-meta {
-            font-size: 0.75rem;
-            color: #a1a1aa;
-        }
-
-        /* Cursor */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.95);
-            transform: rotate(12deg) skew(-12deg);
-            border-radius: 3px;
-            pointer-events: none;
-            z-index: 1000;
-            transition: all 0.1s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .click-effect {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-        }
-
-        /* Scrollbar */
-        .jobs-grid::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .jobs-grid::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 3px;
-        }
-
-        .jobs-grid::-webkit-scrollbar-thumb {
-            background: rgba(59, 130, 246, 0.5);
-            border-radius: 3px;
-        }
-
         /* Responsive */
-        @media (max-width: 768px) {
-            .desktop-content {
+        @media (max-width: 1024px) {
+            .cv-generator-layout {
                 flex-direction: column;
             }
             
-            .right-panel {
+            .cv-left-panel,
+            .cv-right-panel {
                 width: 100%;
-                flex-direction: row;
-                justify-content: center;
-                padding-top: 1rem;
+                min-width: 0;
             }
             
-            .form-grid {
-                grid-template-columns: 1fr;
+            .preview-content {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-inner {
+                padding: 1rem;
             }
             
-            .jobs-grid {
-                grid-template-columns: 1fr;
+            .desktop-screen {
+                min-height: 600px;
             }
             
-            h1 {
-                font-size: 2.5rem;
+            .cv-generator-layout {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="demo-container">
-        <div class="header">
-            <div class="badge">Live Demo</div>
-            <h1>See the Process in Real Time</h1>
-            <p class="subtitle">
-                Click "Start Demo" to see how our AI automatically fills, searches, and matches jobs for you.
-            </p>
+    <!-- Hero Section -->
+    <section class="demo-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <i class="fas fa-robot"></i>
+                    <span>AI CV Generator Demo</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Generera <span class="text-gradient">professionella CV:n</span> med AI
+                </h1>
+                
+                <p class="hero-description">
+                    Vår AI väljer profil, anpassar design och skapar ett perfekt CV automatiskt — i en oändlig loop.
+                </p>
+            </div>
         </div>
+    </section>
 
-        <div class="desktop">
-            <div class="desktop-inner">
-                <div class="desktop-content">
-                    <div class="desktop-bg"></div>
-                    
-                    <!-- Left Panel -->
-                    <div class="left-panel">
-                        <div class="demo-card">
-                            <div class="card-inner">
-                                <!-- Form View -->
-                                <div id="formView" class="form-view">
-                                    <div class="window-controls">
-                                        <div class="dots">
-                                            <div class="dot red"></div>
-                                            <div class="dot yellow"></div>
-                                            <div class="dot green"></div>
+    <!-- Desktop Container -->
+    <div class="desktop-wrapper">
+        <div class="container">
+            <!-- Nested gradient borders matching your existing demo -->
+            <div class="desktop-outer">
+                <div class="desktop-mid">
+                    <div class="desktop-inner">
+                        <div class="desktop-screen">
+                            <!-- Desktop Background Grid -->
+                            <div class="desktop-bg-grid"></div>
+                            
+                            <!-- CV Generator Layout -->
+                            <div class="cv-generator-layout">
+                                <!-- Left Panel: Controls -->
+                                <div class="cv-left-panel">
+                                    <!-- Profile Selection Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-user card-icon"></i>
+                                            <div class="card-title">👤 Profil & Jobb</div>
                                         </div>
-                                        <div class="window-title">MyCareerKit — Demo</div>
-                                        <div style="width: 48px"></div>
-                                    </div>
-
-                                    <div class="form-section">
-                                        <span class="section-label">Personal Information</span>
-                                        <div class="form-grid">
-                                            <div class="form-field">
-                                                <div class="field-label">Name</div>
-                                                <div id="nameField" class="field-value"></div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">Välj profil:</label>
+                                                <div id="profileSelect" class="form-select">Anna Svensson - Frontend Utvecklare</div>
                                             </div>
-                                            <div class="form-field">
-                                                <div class="field-label">Job Title</div>
-                                                <div id="titleField" class="field-value"></div>
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label">Välj jobb (valfritt):</label>
+                                                <div id="jobSelect" class="form-select">Frontend Developer - TechCorp AB</div>
                                             </div>
-                                            <div class="form-field">
-                                                <div class="field-label">Email</div>
-                                                <div id="emailField" class="field-value"></div>
-                                            </div>
-                                            <div class="form-field">
-                                                <div class="field-label">Phone</div>
-                                                <div id="phoneField" class="field-value"></div>
+                                            
+                                            <div id="profileStatus" class="status-indicator">
+                                                <div class="status-dot"></div>
+                                                <div class="status-text">Väljer profil...</div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-section">
-                                        <span class="section-label">About Me / Summary</span>
-                                        <div id="summaryBox" class="summary-box">
-                                            <!-- Will be filled by JS -->
+                                    
+                                    <!-- Style Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-palette card-icon"></i>
+                                            <div class="card-title">🎨 Utseende</div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">CV-stil:</label>
+                                                <div id="styleSelect" class="form-select">Modern</div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label">Anpassa ditt CV:</label>
+                                                <div id="promptText" class="form-textarea">"Ett modernt CV med tydlig typografi och blåa detaljer"</div>
+                                            </div>
+                                            
+                                            <div id="styleStatus" class="status-indicator">
+                                                <div class="status-dot"></div>
+                                                <div class="status-text">Anpassar design...</div>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="status">
-                                        <div class="status-indicator">
-                                            <div class="pulse"></div>
-                                            <span class="status-text">Skills (demo)</span>
+                                    
+                                    <!-- AI Settings Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-cog card-icon"></i>
+                                            <div class="card-title">⚙️ AI-inställningar</div>
                                         </div>
-                                        <div id="statusText" class="status-text">Ready</div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">AI-leverantör:</label>
+                                                <div id="providerSelect" class="form-select">DeepSeek</div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label">AI-modell:</label>
+                                                <div id="modelSelect" class="form-select">DeepSeek Coder V2</div>
+                                            </div>
+                                            
+                                            <div class="slider-group">
+                                                <label class="form-label">Kreativitet:</label>
+                                                <div class="slider-container">
+                                                    <input type="range" min="0" max="20" value="12" class="slider" id="creativitySlider">
+                                                    <div id="creativityValue" class="slider-value">1.2</div>
+                                                </div>
+                                                <div class="slider-labels">
+                                                    <span>Exakt</span>
+                                                    <span>Kreativ</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="aiStatus" class="status-indicator">
+                                                <div class="status-dot"></div>
+                                                <div class="status-text">Konfigurerar AI...</div>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <button id="demoButton" class="demo-button">
-                                        <span id="buttonIcon">🔍</span>
-                                        <span id="buttonText">Start Demo</span>
-                                    </button>
+                                    
+                                    <!-- Output Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-download card-icon"></i>
+                                            <div class="card-title">💾 Utdata</div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">Utdataformat:</label>
+                                                <div id="formatSelect" class="form-select">PDF</div>
+                                            </div>
+                                            
+                                            <div class="checkbox-group">
+                                                <div id="autosaveCheckbox" class="checkbox checked"></div>
+                                                <label class="form-label">Spara automatiskt</label>
+                                            </div>
+                                            
+                                            <div id="outputStatus" class="status-indicator">
+                                                <div class="status-dot"></div>
+                                                <div class="status-text">Redo att generera...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Demo Progress -->
+                                    <div class="demo-progress">
+                                        <div class="progress-bar">
+                                            <div id="progressFill" class="progress-fill"></div>
+                                        </div>
+                                        <div class="progress-info">
+                                            <span id="progressText">Live CV-generering</span>
+                                            <span class="loop-badge">
+                                                <i class="fas fa-infinity"></i> Oändlig loop
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <!-- Results View -->
-                                <div id="resultsView" class="results-panel">
-                                    <div class="window-controls">
-                                        <div class="dots">
-                                            <div class="dot red"></div>
-                                            <div class="dot yellow"></div>
-                                            <div class="dot green"></div>
+                                
+                                <!-- Right Panel: Preview -->
+                                <div class="cv-right-panel">
+                                    <div class="preview-container">
+                                        <div class="preview-header">
+                                            <i class="fas fa-eye card-icon"></i>
+                                            <div class="card-title">👁️ Förhandsgranskning</div>
                                         </div>
-                                        <div class="window-title">MyCareerKit — Results</div>
-                                        <div style="width: 48px"></div>
-                                    </div>
-
-                                    <div class="results-header">
-                                        <span class="section-label">Search Results: 
-                                            <span style="color: #fff; font-weight: 500;">Frontend Developer</span>
-                                        </span>
-                                        <div class="results-count">
-                                            <div class="count">
-                                                <span class="status-text">Jobs from all over Sweden</span>
-                                                <span id="jobCount" class="count-number">0 jobs</span>
+                                        <div id="previewContent" class="preview-content">
+                                            <!-- CV Preview will be generated here -->
+                                            <div id="cvPreview" class="cv-preview">
+                                                <!-- CV content will be dynamically generated -->
                                             </div>
-                                            <div id="searchStatus" class="status-text">Ready to search</div>
                                         </div>
                                     </div>
-
-                                    <div class="form-section">
-                                        <span class="section-label">Matching Jobs</span>
-                                        <div id="jobsContainer" class="jobs-grid">
-                                            <!-- Jobs will be inserted here -->
-                                        </div>
+                                    
+                                    <div id="generateStatus" class="status-indicator" style="margin-top: 1rem;">
+                                        <div class="status-dot"></div>
+                                        <div id="generateStatusText" class="status-text">Klicka på "Generera CV" för att börja</div>
                                     </div>
-
-                                    <button id="restartButton" class="demo-button">
-                                        <span>✅</span>
-                                        <span>Demo Complete — Run Again</span>
-                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Panel -->
-                    <div class="right-panel">
-                        <div class="folder">
-                            <div class="folder-icon">📁</div>
-                            <span class="folder-name">MyCareerKit</span>
-                        </div>
-                        <div class="folder">
-                            <div class="folder-icon">📄</div>
-                            <span class="folder-name">CV Folder</span>
-                        </div>
-                        <div class="folder">
-                            <div class="folder-icon">💼</div>
-                            <span class="folder-name">Jobs</span>
-                        </div>
-                    </div>
-
-                    <!-- Taskbar -->
-                    <div class="taskbar">
-                        <div class="app-icon">
-                            <div class="app-icon-bg">💼</div>
-                            <span class="app-name">MyCareerKit - Demo</span>
-                        </div>
-                        <div class="status-indicator">
-                            <div id="taskbarDot" class="status-dot"></div>
-                            <span id="taskbarText" class="status-text">Ready</span>
+                            
+                            <!-- Taskbar -->
+                            <div class="desktop-taskbar">
+                                <div class="taskbar-content">
+                                    <div class="taskbar-app">
+                                        <div class="taskbar-icon">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <span class="taskbar-name">AI CV Generator - Demo</span>
+                                    </div>
+                                    <div class="taskbar-status">
+                                        <div id="taskbarDot" class="status-dot"></div>
+                                        <span id="taskbarStatus" class="status-text">Redo</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -692,65 +860,90 @@
         </div>
     </div>
 
-    <!-- Cursor -->
-    <div id="cursor" class="cursor"></div>
-
     <script>
-        // Demo state
-        const demoState = {
-            step: 'idle', // 'idle', 'filling', 'searching', 'complete'
-            typed: {
-                name: '',
-                title: '',
-                email: '',
-                phone: ''
-            }
+        // Demo Configuration
+        const demoConfig = {
+            isRunning: true,
+            currentStep: 0,
+            totalSteps: 7,
+            loopDuration: 20000, // 20 seconds per loop
+            stepDurations: [2000, 2000, 2000, 2000, 3000, 5000, 3000] // durations for each step
         };
 
-        // DOM Elements
-        const formView = document.getElementById('formView');
-        const resultsView = document.getElementById('resultsView');
-        const demoButton = document.getElementById('demoButton');
-        const restartButton = document.getElementById('restartButton');
-        const cursor = document.getElementById('cursor');
-        const fields = {
-            name: document.getElementById('nameField'),
-            title: document.getElementById('titleField'),
-            email: document.getElementById('emailField'),
-            phone: document.getElementById('phoneField')
-        };
-        const summaryBox = document.getElementById('summaryBox');
-        const statusText = document.getElementById('statusText');
-        const buttonText = document.getElementById('buttonText');
-        const buttonIcon = document.getElementById('buttonIcon');
-        const jobCount = document.getElementById('jobCount');
-        const searchStatus = document.getElementById('searchStatus');
-        const jobsContainer = document.getElementById('jobsContainer');
-        const taskbarDot = document.getElementById('taskbarDot');
-        const taskbarText = document.getElementById('taskbarText');
-
-        // Sample jobs data
-        const sampleJobs = [
-            { id: 1, title: 'Frontend Developer', location: 'Stockholm', salary: '45,000 SEK/month', company: 'TechCorp AB' },
-            { id: 2, title: 'Fullstack Developer', location: 'Gothenburg', salary: '52,000 SEK/month', company: 'InnovateIT' },
-            { id: 3, title: 'DevOps Engineer', location: 'Remote', salary: '48,000 SEK/month', company: 'CloudSystems' },
-            { id: 4, title: 'UX Designer', location: 'Malmö', salary: '42,000 SEK/month', company: 'DesignStudio' },
-            { id: 5, title: 'Backend Developer', location: 'Uppsala', salary: '47,000 SEK/month', company: 'DataLabs' },
-            { id: 6, title: 'Python Developer', location: 'Stockholm', salary: '46,000 SEK/month', company: 'AI Solutions' },
-            { id: 7, title: 'React Specialist', location: 'Remote', salary: '51,000 SEK/month', company: 'WebFactory' },
-            { id: 8, title: 'Project Manager', location: 'Gothenburg', salary: '55,000 SEK/month', company: 'ManagePro' }
+        // Sample Data
+        const sampleProfiles = [
+            { name: "Anna Svensson", title: "Frontend Utvecklare", email: "anna.svensson@example.com", phone: "073-123 45 67" },
+            { name: "Erik Andersson", title: "Backend Utvecklare", email: "erik.andersson@example.com", phone: "072-987 65 43" },
+            { name: "Maria Johansson", title: "UX Designer", email: "maria.johansson@example.com", phone: "076-555 12 34" },
+            { name: "Karl Bengtsson", title: "DevOps Engineer", email: "karl.bengtsson@example.com", phone: "070-111 22 33" }
         ];
 
+        const sampleJobs = [
+            { title: "Frontend Developer", company: "TechCorp AB", location: "Stockholm" },
+            { title: "Fullstack Developer", company: "InnovateIT", location: "Göteborg" },
+            { title: "DevOps Engineer", company: "CloudSystems", location: "Remote" },
+            { title: "UX Designer", company: "DesignStudio", location: "Malmö" }
+        ];
+
+        const cvStyles = ["Professionell", "Kreativ", "Minimalistisk", "Modern", "Corporate", "Tech"];
+        const aiProviders = ["DeepSeek", "Groq", "OpenAI", "Anthropic"];
+        const aiModels = {
+            "DeepSeek": ["DeepSeek Coder V2", "DeepSeek Chat V3"],
+            "Groq": ["Llama 3 70B", "Mixtral 8x7B"],
+            "OpenAI": ["GPT-4", "GPT-3.5"],
+            "Anthropic": ["Claude 3", "Claude 2"]
+        };
+        const outputFormats = ["HTML", "PDF", "DOCX"];
+
+        // DOM Elements
+        const elements = {
+            profileSelect: document.getElementById('profileSelect'),
+            jobSelect: document.getElementById('jobSelect'),
+            styleSelect: document.getElementById('styleSelect'),
+            promptText: document.getElementById('promptText'),
+            providerSelect: document.getElementById('providerSelect'),
+            modelSelect: document.getElementById('modelSelect'),
+            creativitySlider: document.getElementById('creativitySlider'),
+            creativityValue: document.getElementById('creativityValue'),
+            formatSelect: document.getElementById('formatSelect'),
+            autosaveCheckbox: document.getElementById('autosaveCheckbox'),
+            progressFill: document.getElementById('progressFill'),
+            progressText: document.getElementById('progressText'),
+            taskbarDot: document.getElementById('taskbarDot'),
+            taskbarStatus: document.getElementById('taskbarStatus'),
+            cvPreview: document.getElementById('cvPreview'),
+            generateStatusText: document.getElementById('generateStatusText'),
+            
+            // Status indicators
+            profileStatus: document.querySelector('#profileStatus .status-text'),
+            styleStatus: document.querySelector('#styleStatus .status-text'),
+            aiStatus: document.querySelector('#aiStatus .status-text'),
+            outputStatus: document.querySelector('#outputStatus .status-text')
+        };
+
+        // Current demo state
+        let currentState = {
+            profile: null,
+            job: null,
+            style: null,
+            prompt: '',
+            provider: null,
+            model: null,
+            creativity: 1.2,
+            format: 'PDF',
+            autosave: true
+        };
+
         // Typewriter effect
-        function typeText(element, text, speed = 30) {
+        async function typeText(element, text, speed = 30, prefix = '') {
             return new Promise(resolve => {
                 let i = 0;
-                element.innerHTML = '';
+                element.textContent = prefix;
                 element.classList.add('typing');
                 
                 const interval = setInterval(() => {
                     if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
+                        element.textContent = prefix + text.substring(0, i + 1);
                         i++;
                     } else {
                         clearInterval(interval);
@@ -761,201 +954,326 @@
             });
         }
 
-        // Move cursor animation
-        function moveCursor(x, y, duration = 600) {
-            return new Promise(resolve => {
-                cursor.style.transition = `all ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
-                cursor.style.left = `${x}px`;
-                cursor.style.top = `${y}px`;
+        // Simulate dropdown selection
+        async function simulateDropdown(element, values, selectedIndex, speed = 100) {
+            element.classList.add('typing');
+            
+            // Simulate scrolling through options
+            for (let i = 0; i < values.length; i++) {
+                element.textContent = values[i];
+                await new Promise(resolve => setTimeout(resolve, speed));
                 
-                setTimeout(() => {
-                    resolve();
-                }, duration);
-            });
-        }
-
-        // Show click effect
-        function showClick() {
-            const click = document.createElement('div');
-            click.className = 'click-effect';
-            click.style.left = cursor.style.left;
-            click.style.top = cursor.style.top;
-            document.body.appendChild(click);
-            
-            click.animate([
-                { transform: 'scale(0.6)', opacity: 0.9 },
-                { transform: 'scale(2.3)', opacity: 0 }
-            ], {
-                duration: 450,
-                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-            });
-            
-            setTimeout(() => click.remove(), 450);
-        }
-
-        // Update UI state
-        function updateUI() {
-            switch(demoState.step) {
-                case 'idle':
-                    formView.style.display = 'block';
-                    resultsView.style.display = 'none';
-                    buttonText.textContent = 'Start Demo';
-                    buttonIcon.textContent = '🔍';
-                    statusText.textContent = 'Ready';
-                    taskbarText.textContent = 'Ready';
-                    taskbarDot.style.background = '#10b981';
+                if (i === selectedIndex) {
+                    await new Promise(resolve => setTimeout(resolve, 300));
                     break;
-                    
-                case 'filling':
-                    buttonText.textContent = 'Filling Form...';
-                    buttonIcon.textContent = '✏️';
-                    statusText.textContent = 'Filling form...';
-                    taskbarText.textContent = 'Filling form...';
-                    taskbarDot.style.background = '#f59e0b';
-                    break;
-                    
-                case 'searching':
-                    formView.style.display = 'none';
-                    resultsView.style.display = 'block';
-                    searchStatus.textContent = 'Searching in real time...';
-                    taskbarText.textContent = 'Searching jobs...';
-                    taskbarDot.style.background = '#3b82f6';
-                    break;
-                    
-                case 'complete':
-                    buttonText.textContent = 'Demo Complete — Run Again';
-                    buttonIcon.textContent = '✅';
-                    searchStatus.textContent = 'Search completed!';
-                    taskbarText.textContent = 'Complete';
-                    taskbarDot.style.background = '#10b981';
-                    break;
-            }
-        }
-
-        // Reset demo
-        function resetDemo() {
-            demoState.step = 'idle';
-            demoState.typed = { name: '', title: '', email: '', phone: '' };
-            
-            for (let field in fields) {
-                fields[field].textContent = '';
-                fields[field].classList.remove('typing');
+                }
             }
             
-            summaryBox.textContent = '';
-            summaryBox.classList.remove('typing');
-            
-            jobsContainer.innerHTML = '';
-            jobCount.textContent = '0 jobs';
-            
-            cursor.style.left = '200px';
-            cursor.style.top = '300px';
-            cursor.style.transition = 'none';
-            
-            updateUI();
+            element.classList.remove('typing');
         }
 
-        // Animate form filling
-        async function animateFormFilling() {
-            demoState.step = 'filling';
-            updateUI();
+        // Update creativity value display
+        function updateCreativity(value) {
+            const creativity = (value / 10).toFixed(1);
+            elements.creativityValue.textContent = creativity;
+            currentState.creativity = parseFloat(creativity);
+        }
+
+        // Generate CV content based on current state
+        function generateCVContent() {
+            if (!currentState.profile) return '';
             
-            // Simulate cursor movement to form
-            await moveCursor(300, 400, 400);
+            const profile = currentState.profile;
+            const job = currentState.job || { title: profile.title, company: "Söker nya utmaningar", location: "Sverige" };
             
-            // Type each field
-            await typeText(fields.name, 'Anna Svensson');
-            demoState.typed.name = 'Anna Svensson';
+            return `
+                <div class="cv-header">
+                    <h1 class="cv-name">${profile.name}</h1>
+                    <div class="cv-title">${job.title}</div>
+                    <div class="cv-contact">
+                        <span>📧 ${profile.email}</span>
+                        <span>📱 ${profile.phone}</span>
+                        <span>📍 ${job.location}</span>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Profilsammanfattning</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-description">
+                            Passionerad ${profile.title.toLowerCase()} med stark teknisk bakgrund inom moderna webbtekniker. 
+                            Erfaren av att arbeta i agila team och leverera högkvalitativa lösningar. 
+                            ${currentState.prompt ? currentState.prompt.replace(/"/g, '') : 'Specialiserad på att skala applikationer och förbättra användarupplevelser.'}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Erfarenhet</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-title">Senior ${profile.title}</div>
+                        <div class="cv-item-meta">${job.company} | 2020 - Nuvarande</div>
+                        <div class="cv-item-description">
+                            Ledde utvecklingen av flera kundprojekt med React och TypeScript. 
+                            Implementerade CI/CD pipelines som minskade deployment-tid med 60%. 
+                            Coachade juniora utvecklare och förbättrade teamets kodkvalitet.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Utbildning</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-title">Kandidatexamen i Datateknik</div>
+                        <div class="cv-item-meta">KTH Royal Institute of Technology | 2015 - 2018</div>
+                        <div class="cv-item-description">
+                            Specialisering inom mjukvaruutveckling och användargränssnitt. 
+                            Examensarbete om AI-drivna användarupplevelser fick högsta betyg.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Tekniska Färdigheter</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-description">
+                            <strong>Språk:</strong> JavaScript/TypeScript, Python, HTML/CSS<br>
+                            <strong>Ramverk:</strong> React, Vue.js, Node.js, Express<br>
+                            <strong>Verktyg:</strong> Git, Docker, AWS, Figma, Jenkins<br>
+                            <strong>AI/ML:</strong> TensorFlow, PyTorch, OpenAI API
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Update CV preview
+        function updateCVPreview() {
+            elements.cvPreview.innerHTML = generateCVContent();
+            elements.cvPreview.style.opacity = '0';
+            elements.cvPreview.style.transform = 'translateY(20px)';
             
-            await moveCursor(500, 400, 200);
-            await typeText(fields.title, 'Frontend Developer');
-            demoState.typed.title = 'Frontend Developer';
+            setTimeout(() => {
+                elements.cvPreview.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                elements.cvPreview.style.opacity = '1';
+                elements.cvPreview.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Step 1: Select Profile
+        async function stepSelectProfile() {
+            updateStatus("Väljer profil...", "var(--color-warning)");
+            elements.profileStatus.textContent = "Väljer profil...";
             
-            await moveCursor(300, 500, 200);
-            await typeText(fields.email, 'anna.svensson@example.com');
-            demoState.typed.email = 'anna.svensson@example.com';
-            
-            await moveCursor(500, 500, 200);
-            await typeText(fields.phone, '073-123 45 67');
-            demoState.typed.phone = '073-123 45 67';
-            
-            // Move to summary
-            await moveCursor(400, 600, 300);
-            await typeText(summaryBox, 'Experienced Frontend Developer with 5+ years in React, TypeScript, and modern web technologies. Passionate about creating responsive and accessible user interfaces.', 20);
-            
-            // Move to button
-            const buttonRect = demoButton.getBoundingClientRect();
-            await moveCursor(
-                buttonRect.left + buttonRect.width / 2,
-                buttonRect.top + buttonRect.height / 2,
-                400
+            const profileIndex = Math.floor(Math.random() * sampleProfiles.length);
+            await simulateDropdown(elements.profileSelect, 
+                sampleProfiles.map(p => `${p.name} - ${p.title}`), 
+                profileIndex
             );
             
-            await new Promise(resolve => setTimeout(resolve, 200));
-            
-            // Click animation
-            showClick();
-            await new Promise(resolve => setTimeout(resolve, 300));
-            
-            // Switch to searching
-            demoState.step = 'searching';
-            updateUI();
-            
-            // Simulate searching delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Show results
-            demoState.step = 'complete';
-            updateUI();
-            
-            let jobsShown = 0;
-            for (let i = 0; i < sampleJobs.length; i++) {
-                setTimeout(() => {
-                    const job = sampleJobs[i];
-                    const jobCard = document.createElement('div');
-                    jobCard.className = 'job-card';
-                    jobCard.style.animationDelay = `${i * 0.1}s`;
-                    
-                    jobCard.innerHTML = `
-                        <div class="job-header">
-                            <div class="job-icon"></div>
-                            <div class="job-details">
-                                <div class="job-title">
-                                    <div class="job-name">${job.title}</div>
-                                    <div class="job-salary">${job.salary}</div>
-                                </div>
-                                <div class="job-meta">${job.company} • ${job.location}</div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    jobsContainer.appendChild(jobCard);
-                    jobsShown++;
-                    jobCount.textContent = `${jobsShown} jobs`;
-                }, i * 140);
-            }
+            currentState.profile = sampleProfiles[profileIndex];
+            elements.profileStatus.textContent = `Vald: ${currentState.profile.name}`;
+            await new Promise(resolve => setTimeout(resolve, 800));
         }
 
-        // Event Listeners
-        demoButton.addEventListener('click', () => {
-            if (demoState.step === 'idle') {
-                animateFormFilling();
+        // Step 2: Select Job (optional)
+        async function stepSelectJob() {
+            updateStatus("Söker jobb...", "var(--color-primary)");
+            
+            const jobIndex = Math.floor(Math.random() * sampleJobs.length);
+            const job = sampleJobs[jobIndex];
+            
+            await typeText(elements.jobSelect, `${job.title} - ${job.company}`, 30);
+            currentState.job = job;
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+        }
+
+        // Step 3: Select Style
+        async function stepSelectStyle() {
+            updateStatus("Anpassar design...", "var(--color-primary)");
+            elements.styleStatus.textContent = "Anpassar design...";
+            
+            const styleIndex = Math.floor(Math.random() * cvStyles.length);
+            await simulateDropdown(elements.styleSelect, cvStyles, styleIndex);
+            
+            currentState.style = cvStyles[styleIndex];
+            elements.styleStatus.textContent = `Vald: ${currentState.style}`;
+            
+            // Update prompt
+            const prompts = [
+                '"Ett modernt CV med tydlig typografi och blåa detaljer"',
+                '"Anpassa CV:t för en mjukvaruutvecklarroll"',
+                '"Lägg till avdelning för personliga projekt"',
+                '"Fokusera på tekniska färdigheter och certifieringar"'
+            ];
+            const promptIndex = Math.floor(Math.random() * prompts.length);
+            await typeText(elements.promptText, prompts[promptIndex], 20);
+            currentState.prompt = prompts[promptIndex];
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+        }
+
+        // Step 4: Configure AI
+        async function stepConfigureAI() {
+            updateStatus("Konfigurerar AI...", "var(--color-primary)");
+            elements.aiStatus.textContent = "Konfigurerar AI...";
+            
+            // Select provider
+            const providerIndex = Math.floor(Math.random() * aiProviders.length);
+            await simulateDropdown(elements.providerSelect, aiProviders, providerIndex);
+            currentState.provider = aiProviders[providerIndex];
+            
+            // Select model for provider
+            const models = aiModels[currentState.provider] || aiModels["DeepSeek"];
+            const modelIndex = Math.floor(Math.random() * models.length);
+            await simulateDropdown(elements.modelSelect, models, modelIndex);
+            currentState.model = models[modelIndex];
+            
+            // Adjust creativity slider
+            const targetValue = 8 + Math.floor(Math.random() * 8);
+            const steps = Math.abs(targetValue - parseInt(elements.creativitySlider.value));
+            const direction = targetValue > parseInt(elements.creativitySlider.value) ? 1 : -1;
+            
+            for (let i = 0; i < steps; i++) {
+                elements.creativitySlider.value = parseInt(elements.creativitySlider.value) + direction;
+                updateCreativity(elements.creativitySlider.value);
+                await new Promise(resolve => setTimeout(resolve, 50));
             }
-        });
+            
+            elements.aiStatus.textContent = `Inställd: ${currentState.model}`;
+            await new Promise(resolve => setTimeout(resolve, 800));
+        }
 
-        restartButton.addEventListener('click', resetDemo);
-
-        // Initialize
-        updateUI();
-
-        // Make cursor follow mouse
-        document.addEventListener('mousemove', (e) => {
-            if (demoState.step === 'idle' || demoState.step === 'complete') {
-                cursor.style.transition = 'all 0.1s ease';
-                cursor.style.left = `${e.clientX}px`;
-                cursor.style.top = `${e.clientY}px`;
+        // Step 5: Configure Output
+        async function stepConfigureOutput() {
+            updateStatus("Inställer utdata...", "var(--color-primary)");
+            elements.outputStatus.textContent = "Inställer utdata...";
+            
+            // Select format
+            const formatIndex = Math.floor(Math.random() * outputFormats.length);
+            await simulateDropdown(elements.formatSelect, outputFormats, formatIndex);
+            currentState.format = outputFormats[formatIndex];
+            
+            // Toggle autosave
+            if (Math.random() > 0.5) {
+                elements.autosaveCheckbox.classList.toggle('checked');
+                currentState.autosave = !currentState.autosave;
             }
-        });
+            
+            elements.outputStatus.textContent = `Inställd: ${currentState.format}`;
+            await new Promise(resolve => setTimeout(resolve, 800));
+        }
+
+        // Step 6: Generate CV
+        async function stepGenerateCV() {
+            updateStatus("✨ Genererar CV...", "var(--color-accent)");
+            elements.generateStatusText.textContent = "✨ Genererar CV med AI...";
+            
+            // Show progress animation
+            for (let i = 0; i <= 100; i += 10) {
+                elements.progressFill.style.width = `${i}%`;
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            // Generate and show CV
+            updateCVPreview();
+            
+            elements.generateStatusText.textContent = "✅ CV genererat!";
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+
+        // Step 7: Complete and Reset
+        async function stepCompleteAndReset() {
+            updateStatus("✅ Klar! Återställer...", "var(--color-accent)");
+            elements.generateStatusText.textContent = "✅ CV klart! Återställer...";
+            
+            // Brief pause to show completion
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Reset progress bar
+            elements.progressFill.style.width = '0%';
+            updateStatus("Redo", "var(--color-accent)");
+            elements.generateStatusText.textContent = "Redo för nästa CV";
+        }
+
+        // Update status indicators
+        function updateStatus(text, color) {
+            elements.taskbarStatus.textContent = text;
+            elements.taskbarDot.style.background = color;
+            elements.progressText.textContent = `Live: ${text}`;
+        }
+
+        // Main demo loop
+        async function runDemoLoop() {
+            if (!demoConfig.isRunning) return;
+            
+            const steps = [
+                stepSelectProfile,
+                stepSelectJob,
+                stepSelectStyle,
+                stepConfigureAI,
+                stepConfigureOutput,
+                stepGenerateCV,
+                stepCompleteAndReset
+            ];
+            
+            // Update progress bar for each step
+            for (let i = 0; i < steps.length; i++) {
+                demoConfig.currentStep = i;
+                const stepProgress = (i / steps.length) * 100;
+                elements.progressFill.style.width = `${stepProgress}%`;
+                
+                await steps[i]();
+                
+                // Add step delay
+                if (i < steps.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            }
+            
+            // Complete progress bar
+            elements.progressFill.style.width = '100%';
+            
+            // Wait before resetting
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Loop again
+            runDemoLoop();
+        }
+
+        // Initialize demo
+        function initDemo() {
+            // Setup event listeners for interactive elements
+            elements.creativitySlider.addEventListener('input', function() {
+                updateCreativity(this.value);
+            });
+            
+            elements.autosaveCheckbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+                currentState.autosave = !currentState.autosave;
+            });
+            
+            // Start demo loop
+            setTimeout(() => runDemoLoop(), 1000);
+            
+            // Update time display
+            setInterval(() => {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('sv-SE', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                const progressText = elements.progressText;
+                if (!progressText.textContent.includes('Live:')) {
+                    progressText.textContent = `Live CV-generering • ${timeString}`;
+                }
+            }, 1000);
+        }
+
+        // Start when page loads
+        document.addEventListener('DOMContentLoaded', initDemo);
     </script>
 </body>
 </html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCareerKit - AI CV Generator Demo</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/pages/process.css">
+    <link rel="stylesheet" href="styles/pages/cv-generator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar will be inserted by navbar.js -->
+    
+    <!-- Hero Section -->
+    <section class="hero demo-hero">
+        <div class="container">
+            <div class="hero-content text-center">
+                <div class="badge">
+                    <i class="fas fa-robot"></i>
+                    <span>AI CV Generator Demo</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Generera <span class="text-gradient animate-shimmer">professionella CV:n</span> med AI
+                </h1>
+                
+                <p class="hero-description">
+                    Vår AI väljer profil, anpassar design och skapar ett perfekt CV automatiskt — i en oändlig loop.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desktop Container -->
+    <div class="desktop-wrapper">
+        <div class="container">
+            <!-- Nested gradient borders matching your existing demo -->
+            <div class="desktop-outer gradient-border">
+                <div class="desktop-mid gradient-border">
+                    <div class="desktop-inner">
+                        <div class="desktop-screen">
+                            <!-- Desktop Background Grid -->
+                            <div class="desktop-bg-grid"></div>
+                            
+                            <!-- CV Generator Layout -->
+                            <div class="cv-generator-layout">
+                                <!-- Left Panel: Controls -->
+                                <div class="cv-left-panel">
+                                    <!-- Profile Selection Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-user card-icon"></i>
+                                            <div class="card-title">👤 Profil & Jobb</div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">Välj profil:</label>
+                                                <div id="profileSelect" class="form-select">Anna Svensson - Frontend Utvecklare</div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label">Välj jobb (valfritt):</label>
+                                                <div id="jobSelect" class="form-select">Frontend Developer - TechCorp AB</div>
+                                            </div>
+                                            
+                                            <div id="profileStatus" class="status-indicator">
+                                                <div class="status-dot pulse"></div>
+                                                <div class="status-text">Väljer profil...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Style Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-palette card-icon"></i>
+                                            <div class="card-title">🎨 Utseende</div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">CV-stil:</label>
+                                                <div id="styleSelect" class="form-select">Modern</div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label">Anpassa ditt CV:</label>
+                                                <div id="promptText" class="form-textarea">"Ett modernt CV med tydlig typografi och blåa detaljer"</div>
+                                            </div>
+                                            
+                                            <div id="styleStatus" class="status-indicator">
+                                                <div class="status-dot pulse"></div>
+                                                <div class="status-text">Anpassar design...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- AI Settings Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-cog card-icon"></i>
+                                            <div class="card-title">⚙️ AI-inställningar</div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">AI-leverantör:</label>
+                                                <div id="providerSelect" class="form-select">DeepSeek</div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label">AI-modell:</label>
+                                                <div id="modelSelect" class="form-select">DeepSeek Coder V2</div>
+                                            </div>
+                                            
+                                            <div class="slider-group">
+                                                <label class="form-label">Kreativitet:</label>
+                                                <div class="slider-container">
+                                                    <input type="range" min="0" max="20" value="12" class="slider" id="creativitySlider">
+                                                    <div id="creativityValue" class="slider-value">1.2</div>
+                                                </div>
+                                                <div class="slider-labels">
+                                                    <span>Exakt</span>
+                                                    <span>Kreativ</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="aiStatus" class="status-indicator">
+                                                <div class="status-dot pulse"></div>
+                                                <div class="status-text">Konfigurerar AI...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Output Card -->
+                                    <div class="cv-card">
+                                        <div class="card-header">
+                                            <i class="fas fa-download card-icon"></i>
+                                            <div class="card-title">💾 Utdata</div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="form-group">
+                                                <label class="form-label">Utdataformat:</label>
+                                                <div id="formatSelect" class="form-select">PDF</div>
+                                            </div>
+                                            
+                                            <div class="checkbox-group">
+                                                <div id="autosaveCheckbox" class="checkbox checked"></div>
+                                                <label class="form-label">Spara automatiskt</label>
+                                            </div>
+                                            
+                                            <div id="outputStatus" class="status-indicator">
+                                                <div class="status-dot pulse"></div>
+                                                <div class="status-text">Redo att generera...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Demo Progress -->
+                                    <div class="demo-progress">
+                                        <div class="progress-bar">
+                                            <div id="progressFill" class="progress-fill"></div>
+                                        </div>
+                                        <div class="progress-info">
+                                            <span id="progressText">Live CV-generering</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Panel: Preview -->
+                                <div class="cv-right-panel">
+                                    <div class="preview-container">
+                                        <div class="preview-header">
+                                            <i class="fas fa-eye card-icon"></i>
+                                            <div class="card-title">👁️ Förhandsgranskning</div>
+                                        </div>
+                                        <div id="previewContent" class="preview-content">
+                                            <!-- CV Preview will be generated here -->
+                                            <div id="cvPreview" class="cv-preview">
+                                                <!-- CV content will be dynamically generated -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Taskbar -->
+                            <div class="desktop-taskbar">
+                                <div class="taskbar-content">
+                                    <div class="taskbar-app">
+                                    </div>
+                                    <div class="taskbar-status">
+                                        <span id="taskbarStatus" class="status-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desktop Stand (like React version) -->
+            <div class="desktop-stand">
+                <div class="stand-base"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="js/cv-generator.js"></script>
+</body>
+</html>

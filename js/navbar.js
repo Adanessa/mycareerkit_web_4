@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageMap = {
         'index.html': '/',
         'process.html': '/process',
+        'cv-generator-demo.html': '/cv-generator',
         'gallery.html': '/gallery',
         'tech.html': '/tech'
     };
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navItems = [
         { label: 'Hem', href: 'index.html', route: '/' },
         { label: 'Sök Jobb', href: 'process.html', route: '/process' },
+        { name: 'CV Generator', href: 'cv-generator-demo.html' },
         { label: 'Galleri', href: 'gallery.html', route: '/gallery' },
         { label: 'Teknik', href: 'tech.html', route: '/tech' }
     ];
