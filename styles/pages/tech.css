@@ -1,0 +1,415 @@
+/* styles/pages/tech.css */
+
+/* Hero Section */
+.tech-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 6rem;
+    background: linear-gradient(
+        to bottom,
+        var(--color-background) 0%,
+        rgba(var(--color-primary-rgb), 0.03) 100%
+    );
+}
+
+.tech-hero-content {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.tech-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.tech-description {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    max-width: 36rem;
+    margin: 0 auto;
+}
+
+/* Section Styling */
+.section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+/* Tech Grid - Huvudteknologier */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.tech-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: all var(--transition-normal);
+}
+
+.tech-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+}
+
+.tech-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+}
+
+.tech-card h3 i {
+    font-size: 1.5rem;
+}
+
+.tech-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tech-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--color-muted);
+}
+
+.tech-card li:last-child {
+    border-bottom: none;
+}
+
+.tech-card li strong {
+    color: var(--color-foreground);
+    font-weight: 600;
+}
+
+/* API Cards */
+.apis-section {
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-primary-rgb), 0.03) 0%,
+        rgba(var(--color-secondary-rgb), 0.02) 100%
+    );
+}
+
+.apis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.api-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: all var(--transition-normal);
+}
+
+.api-card:hover {
+    border-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.api-card h4 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.api-card code {
+    display: inline-block;
+    background: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary-light);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+}
+
+.api-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.api-card li {
+    padding: 0.25rem 0;
+    color: var(--color-muted);
+}
+
+.api-card li strong {
+    color: var(--color-foreground);
+}
+
+
+/* Jobb-scraping Section */
+.scraping-section {
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-accent-rgb, 16, 185, 129), 0.03) 0%,
+        transparent 100%
+    );
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.scraping-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.scraping-item {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    transition: all var(--transition-normal);
+}
+
+.scraping-item:hover {
+    border-color: var(--color-accent);
+}
+
+.scraping-item h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.scraping-item h4 i {
+    font-size: 1.25rem;
+}
+
+/* Dependencies Grid */
+.deps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.deps-category {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+}
+
+.deps-category h4 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2);
+}
+
+.deps-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.deps-category li {
+    padding: 0.25rem 0;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+}
+
+/* Footnotes */
+.footnote {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+.footnote code {
+    background: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary-light);
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+    font-size: 0.85rem;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* No Bullets Utility */
+.no-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.no-bullets li {
+    padding: 0.5rem 0;
+    color: var(--color-muted);
+}
+
+.no-bullets li strong {
+    color: var(--color-foreground);
+}
+
+/* Section Subtitle */
+.section-subtitle {
+    text-align: center;
+    color: var(--color-muted);
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+/* Notes Section */
+.notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.note {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    transition: all var(--transition-normal);
+}
+
+.note:hover {
+    border-color: var(--color-primary);
+}
+
+.note h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.note h4 i {
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+    background: var(--color-background-light);
+    border-top: 1px solid var(--color-border);
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tech-card, .api-card, .structure-item, .scraping-item, .deps-category, .note {
+    animation: slideIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.tech-card:nth-child(1) { animation-delay: 0.1s; }
+.tech-card:nth-child(2) { animation-delay: 0.2s; }
+.tech-card:nth-child(3) { animation-delay: 0.3s; }
+.tech-card:nth-child(4) { animation-delay: 0.4s; }
+
+.api-card:nth-child(1) { animation-delay: 0.1s; }
+.api-card:nth-child(2) { animation-delay: 0.2s; }
+.api-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tech-hero {
+        min-height: 40vh;
+        padding-top: 5rem;
+    }
+    
+    .tech-title {
+        font-size: 2.5rem;
+    }
+    
+    .tech-description {
+        font-size: 1.125rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .tech-grid,
+    .apis-grid,
+    .code-structure,
+    .scraping-info,
+    .deps-grid,
+    .notes {
+        grid-template-columns: 1fr;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .tech-card,
+    .api-card,
+    .structure-item,
+    .scraping-item,
+    .deps-category,
+    .note {
+        padding: 1.5rem;
+    }
+    
+    .code-block {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-title {
+        font-size: 2rem;
+    }
+    
+    .tech-description {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
