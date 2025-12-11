@@ -1,0 +1,368 @@
+/* styles/pages/about.css */
+
+/* Hero Section */
+.about-hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 6rem;
+    background: linear-gradient(
+        to bottom,
+        var(--color-background) 0%,
+        rgba(var(--color-primary-rgb), 0.05) 50%,
+        var(--color-background) 100%
+    );
+}
+
+.about-hero-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-tagline {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--color-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+    color: var(--color-primary);
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.about-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-foreground);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.hero-description p {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Section Styling */
+.about-section {
+    padding: 4rem 0;
+}
+
+.problem-section {
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-secondary-rgb), 0.02) 0%,
+        transparent 100%
+    );
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.tech-section {
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-primary-rgb), 0.03) 0%,
+        rgba(var(--color-secondary-rgb), 0.02) 100%
+    );
+    border-top: 1px solid var(--color-border);
+}
+
+.vision-section {
+    border-top: 1px solid var(--color-border);
+}
+
+.section-header {
+    max-width: 48rem;
+    margin: 0 auto 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-intro {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* Solution Content */
+.solution-content {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.solution-block {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+}
+
+.solution-icon {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--radius-lg);
+    background: rgba(var(--color-primary-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.solution-icon i {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.solution-text {
+    flex: 1;
+}
+
+.solution-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-foreground);
+}
+
+.solution-text p {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.solution-text strong {
+    color: var(--color-foreground);
+    font-weight: 600;
+}
+
+/* Technical Overview */
+.tech-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tech-column h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-foreground);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tech-column h3 i {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.tech-column p {
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.tech-column strong {
+    color: var(--color-foreground);
+    font-weight: 600;
+}
+
+/* Tech Note */
+.tech-note {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(var(--color-primary-rgb), 0.05);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.1);
+    border-radius: var(--radius-xl);
+}
+
+.tech-note h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.tech-note h4 i {
+    font-size: 1.25rem;
+}
+
+.tech-note p {
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Vision Content */
+.vision-content {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.vision-content p {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.vision-cta {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.vision-tagline {
+    font-size: 1.25rem;
+    color: var(--color-foreground);
+    font-weight: 600;
+    line-height: 1.6;
+    margin-bottom: 2rem !important;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-secondary {
+    background: var(--color-card);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background: var(--color-card-light);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.solution-block {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.solution-block:nth-child(1) { animation-delay: 0.1s; }
+.solution-block:nth-child(2) { animation-delay: 0.2s; }
+.solution-block:nth-child(3) { animation-delay: 0.3s; }
+.solution-block:nth-child(4) { animation-delay: 0.4s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 50vh;
+        padding-top: 5rem;
+    }
+    
+    .about-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .hero-description p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .solution-block {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .solution-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .solution-icon i {
+        font-size: 1.25rem;
+    }
+    
+    .solution-text h3 {
+        font-size: 1.25rem;
+    }
+    
+    .solution-text p {
+        font-size: 1rem;
+    }
+    
+    .tech-overview {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .vision-tagline {
+        font-size: 1.125rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-intro {
+        font-size: 1rem;
+    }
+}

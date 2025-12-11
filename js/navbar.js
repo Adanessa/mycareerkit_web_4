@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { label: 'Sök Jobb', href: 'process.html', route: '/process' },
         { label: 'CV Generator', href: 'cv-generator-demo.html', route: '/cv-generator' },
         { label: 'Galleri', href: 'gallery.html', route: '/gallery' },
-        { label: 'Teknik', href: 'tech.html', route: '/tech' }
+        { label: 'Om oss', href: 'about.html', route: '/tech' }
     ];
     
     // Navbar HTML with your React design
