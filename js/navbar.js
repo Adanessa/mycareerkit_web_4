@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'process.html': '/process',
         'cv-generator-demo.html': '/cv-generator',
         'gallery.html': '/gallery',
-        'tech.html': '/tech'
+        'about.html': '/about'
     };
     
     const currentRoute = pageMap[currentPage] || '/';

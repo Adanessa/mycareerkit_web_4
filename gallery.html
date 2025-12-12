@@ -1,16 +1,103 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <!-- Same head as index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Galleri | MyCareerKit</title>
+    
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/pages/gallery.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar will be inserted by navbar.js -->
+    <!-- Navbar will be inserted here by navbar.js -->
     
-    <main>
-        <h1>Page Content Here</h1>
-    </main>
-    
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <!-- Header -->
+            <div class="gallery-header">
+                <span class="hero-tagline">CV Designs Collection</span>
+                <h1 class="gallery-title text-gradient animate-shimmer">CV Galleri</h1>
+                <p class="gallery-description">
+                    Utforska våra professionella CV-mallar skapade med AI. 
+                    Varje CV är unikt designat och kan anpassas efter dina behov. 
+                    Klicka på en thumbnail för att se CV:t i full storlek.
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Alla</button>
+                <button class="filter-btn" data-filter="technology">Teknik</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="business">Affärer</button>
+                <button class="filter-btn" data-filter="academic">Akademiskt</button>
+                <button class="filter-btn" data-filter="professional">Professionellt</button>
+                <button class="filter-btn" data-filter="showstopper">Showstopper</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="gallery-empty" id="emptyState" style="display: none;">
+                <div class="gallery-empty-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>Inga CV:n hittades</h3>
+                <p>Det finns för närvarande inga CV:n i denna kategori. Prova ett annat filter.</p>
+                <button class="btn btn-primary" onclick="filterGallery('all')">
+                    Visa alla CV:n
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preview Modal -->
+    <div class="preview-modal" id="previewModal">
+        <div class="preview-content">
+            <div class="preview-header">
+                <div class="preview-title">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="previewTitle">CV Förhandsvisning</span>
+                </div>
+                <button class="preview-close" id="previewClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="preview-frame-container">
+                <iframe class="preview-frame" id="previewFrame" sandbox="allow-scripts allow-same-origin">
+                    <div class="preview-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </iframe>
+            </div>
+            
+            <div class="preview-actions">
+                <a class="btn btn-outline" id="previewDownload">
+                    <i class="fas fa-download"></i> Ladda ner HTML
+                </a>
+                <a class="btn btn-primary" id="previewOpen" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Öppna i nytt fönster
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>MyCareerKit – © 2025. Hela jobbsökandet i en enda app.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="js/navbar.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
 </body>
 </html>
