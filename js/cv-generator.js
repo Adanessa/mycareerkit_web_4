@@ -1,6 +1,3 @@
-// js/cv-generator.js
-// AI CV Generator Demo Animation
-
 document.addEventListener('DOMContentLoaded', function() {
     // Demo Configuration
     const demoConfig = {
@@ -69,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '"Inkludera kvantifierbara resultat och prestationer"'
     ];
 
-    // DOM Elements
     const elements = {
         profileSelect: document.getElementById('profileSelect'),
         jobSelect: document.getElementById('jobSelect'),
@@ -128,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Clear text with backspace effect
     async function clearText(element, speed = 20) {
         return new Promise(resolve => {
             const text = element.textContent;
@@ -153,16 +148,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Simulate dropdown selection
     async function simulateDropdown(element, values, selectedIndex, speed = 100) {
         element.classList.add('typing');
         
-        // Show "Selecting..." briefly
         const originalText = element.textContent;
         element.textContent = "Väljer...";
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Simulate scrolling through options
         for (let i = 0; i <= selectedIndex; i++) {
             element.textContent = values[i];
             await new Promise(resolve => setTimeout(resolve, speed));
@@ -171,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
         element.classList.remove('typing');
     }
 
-    // Update creativity value display
     function updateCreativity(value) {
         const creativity = (value / 10).toFixed(1);
         elements.creativityValue.textContent = creativity;
@@ -180,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => elements.creativityValue.classList.remove('typing'), 300);
     }
 
-    // Generate CV content based on current state
     function generateCVContent() {
         if (!currentState.profile) return '';
         
@@ -294,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Update CV preview with animation
     function updateCVPreview() {
         const content = generateCVContent();
         const preview = elements.cvPreview;
@@ -304,10 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
         preview.style.opacity = '0';
         
         setTimeout(() => {
-            // Update content
             preview.innerHTML = content;
-            
-            // Fade in with slide up
             preview.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             preview.style.opacity = '0';
             preview.style.transform = 'translateY(20px)';
@@ -321,7 +307,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
 
-    // Step 1: Select Profile
     async function stepSelectProfile() {
         updateStatus("Väljer profil...", "var(--color-warning)");
         elements.profileStatus.textContent = "Väljer profil...";
@@ -341,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         await new Promise(resolve => setTimeout(resolve, 800));
     }
 
-    // Step 2: Select Job (optional)
     async function stepSelectJob() {
         updateStatus("Söker jobb...", "var(--color-primary)");
         
@@ -354,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
         await new Promise(resolve => setTimeout(resolve, 800));
     }
 
-    // Step 3: Select Style
     async function stepSelectStyle() {
         updateStatus("Anpassar design...", "var(--color-primary)");
         elements.styleStatus.textContent = "Anpassar design...";
@@ -448,9 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Simulate AI processing (shorter total time since no messages)
-        await new Promise(resolve => setTimeout(resolve, 1200)); // Reduced from 2400ms
-        
-        // Generate and show CV
+        await new Promise(resolve => setTimeout(resolve, 1200));
         updateCVPreview();
         
         await new Promise(resolve => setTimeout(resolve, 1500));
@@ -530,39 +511,24 @@ document.addEventListener('DOMContentLoaded', function() {
             stepCompleteAndReset
         ];
         
-        // Run through all steps
         for (let i = 0; i < steps.length; i++) {
             demoConfig.currentStep = i;
             const stepProgress = (i / steps.length) * 100;
             elements.progressFill.style.width = `${stepProgress}%`;
             
             await steps[i]();
-            
-            // Add step delay (shorter between steps)
             if (i < steps.length - 1) {
                 await new Promise(resolve => setTimeout(resolve, 300));
             }
         }
-        
-        // Complete progress bar
         elements.progressFill.style.width = '100%';
-        
-        // Wait before resetting
         await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Loop again
         runDemoLoop();
     }
 
-    // Initialize demo
     function initDemo() {
-        // Setup interactive elements
         initInteractiveElements();
-        
-        // Start demo loop after a brief delay
         setTimeout(() => runDemoLoop(), 1500);
-        
-        // Update time display
         setInterval(() => {
             const now = new Date();
             const timeString = now.toLocaleTimeString('sv-SE', { 
@@ -581,6 +547,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // Start when page loads
     initDemo();
 });

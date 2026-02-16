@@ -1,6 +1,4 @@
-// js/gallery.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Sample gallery data with placeholders
     const galleryData = [
         {
             id: 1,
@@ -9,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "technology",
             tags: ["Modern", "Clean", "Professional"],
             date: "2025-01-15",
-            htmlFile: "cv-modern-tech.html", // Replace with actual HTML file path
-            thumbnail: "assets/thumbnails/cv-tech.jpg" // Replace with actual thumbnail path
+            htmlFile: "cv-modern-tech.html",
+            thumbnail: "assets/thumbnails/cv-tech.jpg"
         },
         {
             id: 2,
@@ -77,13 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentFilter = 'all';
 
-    // Initialize gallery
     function initGallery() {
         renderGalleryItems(galleryData);
         setupEventListeners();
     }
 
-    // Render gallery items
     function renderGalleryItems(items) {
         if (items.length === 0) {
             emptyState.style.display = 'block';
@@ -232,7 +228,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Initialize the gallery
     initGallery();
 });

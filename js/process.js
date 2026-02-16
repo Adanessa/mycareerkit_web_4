@@ -1,14 +1,11 @@
-// js/process.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Demo state
     const demo = {
         isRunning: true,
         currentStep: 'filling',
-        loopDuration: 15000, // 15 seconds per loop
-        resetTimer: 5 // seconds before reset
+        loopDuration: 15000,
+        resetTimer: 5
     };
     
-    // DOM Elements
     const formView = document.getElementById('formView');
     const resultsView = document.getElementById('resultsView');
     const fields = {
@@ -27,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressText = document.getElementById('progressText');
     const resetTimerEl = document.getElementById('resetTimer');
     
-    // Sample data
     const userData = {
         name: 'Anna Svensson',
         title: 'Frontend Utvecklare',
@@ -47,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 8, title: 'Projektledare', location: 'Göteborg', salary: '55 000 kr/mån', company: 'ManagePro' }
     ];
     
-    // Typewriter effect
     function typeText(element, text, speed = 30) {
         return new Promise(resolve => {
             let i = 0;
@@ -67,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Clear text with backspace effect
     function clearText(element, speed = 20) {
         return new Promise(resolve => {
             const text = element.textContent;
@@ -92,23 +86,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Reset all fields
     async function resetAllFields() {
-        // Clear form fields
         for (let field in fields) {
             await clearText(fields[field], 15);
             await new Promise(resolve => setTimeout(resolve, 30));
         }
         
-        // Clear summary
         await clearText(summaryBox, 10);
-        
-        // Clear jobs
         jobsList.innerHTML = '';
         jobCount.textContent = '0 jobb';
     }
     
-    // Fill form with typing animation
     async function fillForm() {
         demo.currentStep = 'filling';
         formView.classList.add('active');
@@ -138,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
         await new Promise(resolve => setTimeout(resolve, 1000));
     }
     
-    // Search and display jobs
     async function searchAndShowJobs() {
         demo.currentStep = 'searching';
         formView.classList.remove('active');
@@ -146,15 +133,10 @@ document.addEventListener('DOMContentLoaded', function() {
         searchStatus.textContent = 'Söker i realtid...';
         taskbarStatus.textContent = 'Söker jobb...';
         taskbarDot.style.background = 'var(--color-primary)';
-        
-        // Clear previous jobs
         jobsList.innerHTML = '';
         jobCount.textContent = '0 jobb';
-        
-        // Simulate search delay
         await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Add jobs with staggered animation
+
         let count = 0;
         for (let i = 0; i < sampleJobs.length; i++) {
             const job = sampleJobs[i];
@@ -209,21 +191,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Main demo loop
     async function runDemoLoop() {
         if (!demo.isRunning) return;
-        
-        // Reset → Fill → Search → Wait → Repeat
         await resetAllFields();
         await fillForm();
         await searchAndShowJobs();
         await startResetCountdown();
-        
-        // Loop again
         runDemoLoop();
     }
     
-    // Start the demo
     runDemoLoop();
-    
-    // Update progress text with live timestamp
     setInterval(() => {
         const now = new Date();
         const timeString = now.toLocaleTimeString('sv-SE', { 

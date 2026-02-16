@@ -1,10 +1,6 @@
-// js/navbar.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Get current page
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop() || 'index.html';
-    
-    // Map our pages to the React-style routes
     const pageMap = {
         'index.html': '/',
         'process.html': '/process',
@@ -15,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const currentRoute = pageMap[currentPage] || '/';
     
-    // Navigation items matching your React array
     const navItems = [
         { label: 'Hem', href: 'index.html', route: '/' },
         { label: 'Sök Jobb', href: 'process.html', route: '/process' },
@@ -23,8 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { label: 'Galleri', href: 'gallery.html', route: '/gallery' },
         { label: 'Om oss', href: 'about.html', route: '/tech' }
     ];
-    
-    // Navbar HTML with your React design
     const navbarHTML = `
         <nav class="navbar">
             <div class="container">
@@ -65,13 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
         </nav>
     `;
     
-    // Insert navbar
     document.body.insertAdjacentHTML('afterbegin', navbarHTML);
-    
-    // Add hover effects (similar to React's motion.div)
     const navLinks = document.querySelectorAll('.nav-link');
     let hoveredItem = null;
-    
     navLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
             hoveredItem = this.getAttribute('data-label');
@@ -119,16 +108,12 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
             this.classList.toggle('active');
         });
-        
-        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
             }
         });
-        
-        // Close menu when clicking a link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -136,8 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
-    // Initial underline position
     setTimeout(updateUnderlines, 100);
     window.addEventListener('resize', updateUnderlines);
 });
